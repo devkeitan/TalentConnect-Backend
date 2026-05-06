@@ -22,12 +22,16 @@ from drf_spectacular.views import SpectacularAPIView, SpectacularSwaggerView
 from users.serializers import CustomTokenObtainPairView
 
 urlpatterns = [
+    path('admin/', admin.site.urls),
      path('api/users/', include('users.urls')),
+    path('api/talent/', include('talent.urls')),
+      path('api/organizer/', include('organizer.urls')),
       # JWT endpoints
     path('api/auth/login/', CustomTokenObtainPairView.as_view(), name='token_obtain_pair'),    # ← Login
-    path('api/auth/refresh/', TokenRefreshView.as_view(), name='token_refresh'), 
-    
-    path('api/talent/', include('talent.urls')),
-
+      path('api/auth/refresh/', TokenRefreshView.as_view(), name='token_refresh'), 
+     # API Docs
+    path('api/schema/', SpectacularAPIView.as_view(), name='schema'),
+    path('api/docs/', SpectacularSwaggerView.as_view(url_name='schema'), name='swagger-ui'), 
+    path('api/messaging/', include('messaging.urls')),
 
 ]

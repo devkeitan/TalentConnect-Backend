@@ -45,18 +45,26 @@ INSTALLED_APPS = [
     'rest_framework',
      'corsheaders',
 <<<<<<< HEAD
+<<<<<<< HEAD
      
+=======
+
+>>>>>>> origin/dashboard-kath
     # Your apps
     'users',   
     'talent',
     'organizer',
     'channels',
+<<<<<<< HEAD
 =======
 
     # Your apps 
     'talent',
     'organizer',
 >>>>>>> origin/bookings-justine
+=======
+    'messaging',
+>>>>>>> origin/dashboard-kath
 
 ]
 

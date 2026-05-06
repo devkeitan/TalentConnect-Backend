@@ -10,5 +10,5 @@ urlpatterns = [
     path('portfolio/media/', TalentMediaUploadView.as_view(), name='talent-media-upload'),
     path('portfolio/media/<int:media_id>/', TalentMediaUploadView.as_view()),
     path('portfolio/all/<int:portfolio_id>/', TalentPortfolioDetailView.as_view(), name='talent-portfolio-detail'),
-
+    path('dashboard/', TalentDashboardView.as_view(), name='talent-dashboard'),
 ]
