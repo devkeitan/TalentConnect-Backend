@@ -47,7 +47,9 @@ INSTALLED_APPS = [
      
     # Your apps
     'users',   
-
+    'talent',
+    'organizer',
+    'channels',
 
 ]
 
