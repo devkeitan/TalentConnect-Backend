@@ -2,6 +2,19 @@ from django.db import models
 from users.models import User
 
 
+class OrganizerProfile(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE, related_name='organizer_profile')
+    company_name = models.CharField(max_length=200)
+    description = models.TextField(blank=True)
+    website = models.URLField(blank=True)
+    location = models.CharField(max_length=100, blank=True)
+    profile_picture = models.URLField(blank=True)
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+
+    def __str__(self):
+        return f"{self.company_name}"
+
 EVENT_TYPES = [
     ('Wedding', 'Wedding'),
     ('Corporate Event', 'Corporate Event'),
@@ -11,6 +24,7 @@ EVENT_TYPES = [
     ('Charity Gala', 'Charity Gala'),
     ('Other', 'Other'),
 ]
+
 
 class Event(models.Model):
     organizer = models.ForeignKey(User, on_delete=models.CASCADE, related_name='events')
@@ -52,3 +66,13 @@ class BookingRequest(models.Model):
     def __str__(self):
         return f"{self.organizer} → {self.talent} ({self.status})"
     
+class Review(models.Model):
+    booking = models.OneToOneField(BookingRequest, on_delete=models.CASCADE, related_name='review')
+    organizer = models.ForeignKey(User, on_delete=models.CASCADE, related_name='given_reviews')
+    talent = models.ForeignKey('talent.TalentPortfolio', on_delete=models.CASCADE, related_name='reviews')
+    rating = models.PositiveSmallIntegerField()  # 1–5
+    comment = models.TextField(blank=True)
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return f"{self.organizer} → {self.talent} ({self.rating}★)"
