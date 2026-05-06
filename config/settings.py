@@ -44,12 +44,19 @@ INSTALLED_APPS = [
     # Third-party
     'rest_framework',
      'corsheaders',
+<<<<<<< HEAD
      
     # Your apps
     'users',   
     'talent',
     'organizer',
     'channels',
+=======
+
+    # Your apps 
+    'talent',
+    'organizer',
+>>>>>>> origin/bookings-justine
 
 ]
 
